@@ -1,16 +1,23 @@
 import React, { useRef, useState } from "react";
 import Header from "./Header";
 import { formValidator } from "../utils/validate";
-import { createUserWithEmailAndPassword,signInWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
 export default function Login() {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errMessage, setErrorMessage] = useState(null);
   const email = useRef(null);
   const password = useRef(null);
+  const name = useRef(null);
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   const toggleSignInButton = () => {
     setIsSignInForm(!isSignInForm);
   };
@@ -22,37 +29,63 @@ export default function Login() {
     //here we write our sign in and sign up code
     if (!isSignInForm) {
       //sign up code
-      createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
+      createUserWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
         .then((userCredential) => {
           // Signed up
           const user = userCredential.user;
+          updateProfile(user, {
+            displayName: name.current.value,
+            photoURL: "https://example.com/jane-q-user/profile.jpg",
+          })
+            .then(() => {
+              // Profile updated!
+              // ...
+              const{uid,displayName,photoURL,email} = auth.currentUser;
+              dispatch(addUser({uid:uid,displayName:displayName,photoURL:photoURL,email:email}));
+              navigate("/browse");
+            })
+            .catch((error) => {
+              // An error occurred
+              // ...
+              const errorCode = error.code;
+              const errorMessage = error.message;
+              // ..
+              console.log(error);
+              navigate("/error");
+              setErrorMessage(errorCode + " - " + errorMessage);
+            });
           // ...
-          navigate("/browse");
-          console.log(user);
-          
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
           // ..
-          navigate("/")
+          navigate("/error");
           setErrorMessage(errorCode + " - " + errorMessage);
         });
     } else {
       //sign in code
-      signInWithEmailAndPassword(auth, email.current.value, password.current.value)
-  .then((userCredential) => {
-    // Signed in 
-    const user = userCredential.user;
-    // ...
-    navigate("/browse");
-    console.log(user);
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    setErrorMessage(errorCode+"-"+errorMessage);
-  });
+      signInWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          // ...
+          navigate("/browse");
+          console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorCode + "-" + errorMessage);
+        });
     }
   };
   return (
@@ -73,6 +106,7 @@ export default function Login() {
         </h1>
         {!isSignInForm && (
           <input
+            ref={name}
             type="text"
             className="p-4 my-4 w-full bg-gray-700"
             placeholder="Enter your full name"

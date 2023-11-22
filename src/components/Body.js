@@ -6,6 +6,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../utils/firebase';
 import { useDispatch } from 'react-redux';
 import {addUser, removeUser} from "../utils/userSlice"
+import NewError from "../components/NewError"
 export default function Body() {
   const dispatch = useDispatch();
   //const navigate = useNavigate();
@@ -17,13 +18,16 @@ export default function Body() {
         {
             element :<Browse />,
             path:"/browse"
+        },{
+          element:<NewError />,
+          path:'/error'
         }
     ]);
     useEffect(()=>{
       onAuthStateChanged(auth,(user)=>{
         if(user){
-          const {uid, email,displayName} = user;
-          dispatch(addUser({uid:uid,email:email,displayName:displayName}));
+          const {uid, email,displayName,photoURL} = user;
+          dispatch(addUser({uid:uid,email:email,displayName:displayName,photoURL:photoURL}));
           //window.location.href = "/browse";
         }else{
           dispatch(removeUser());
