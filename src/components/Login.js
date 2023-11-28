@@ -10,6 +10,9 @@ import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import { netflixLogo } from "../utils/constant";
+import { USERAVATAR } from "../utils/constant";
+import error from "./NewError";
 export default function Login() {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errMessage, setErrorMessage] = useState(null);
@@ -39,14 +42,14 @@ export default function Login() {
           const user = userCredential.user;
           updateProfile(user, {
             displayName: name.current.value,
-            photoURL: "https://example.com/jane-q-user/profile.jpg",
+            photoURL: USERAVATAR,
           })
             .then(() => {
               // Profile updated!
               // ...
               const{uid,displayName,photoURL,email} = auth.currentUser;
               dispatch(addUser({uid:uid,displayName:displayName,photoURL:photoURL,email:email}));
-              navigate("/browse");
+              
             })
             .catch((error) => {
               // An error occurred
@@ -54,7 +57,7 @@ export default function Login() {
               const errorCode = error.code;
               const errorMessage = error.message;
               // ..
-              console.log(error);
+              console.log(error+"error in updating");
               navigate("/error");
               setErrorMessage(errorCode + " - " + errorMessage);
             });
@@ -66,6 +69,7 @@ export default function Login() {
           // ..
           navigate("/error");
           setErrorMessage(errorCode + " - " + errorMessage);
+          console.log(error+"error in creating");
         });
     } else {
       //sign in code
@@ -78,7 +82,7 @@ export default function Login() {
           // Signed in
           const user = userCredential.user;
           // ...
-          navigate("/browse");
+          
           console.log(user);
         })
         .catch((error) => {
@@ -93,7 +97,7 @@ export default function Login() {
       <Header />
       <div className="absolute">
         <img
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/a09bb938-2d90-42ae-986e-5a3e4abf9e77/8eb1e781-3494-4aa4-9405-268ca6473e4c/IN-en-20231113-popsignuptwoweeks-perspective_alpha_website_small.jpg"
+          src={netflixLogo}
           alt="netfixLogo"
         />
       </div>
