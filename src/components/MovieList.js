@@ -3,7 +3,8 @@ import MovieCard from "./MovieCard";
 
 
 const MovieList = ({ title, movies }) => {
-  console.log(movies);
+  if(title === "Trending")
+    
   return (
     <div className=" px-6 overflow-hidden">
       <h1 className="m-2 text-3xl py-4 text-white">{title}</h1>
@@ -12,7 +13,7 @@ const MovieList = ({ title, movies }) => {
         <div className="flex">
           {movies.length > 0 &&
             movies?.map((movie) => (
-             <MovieCard  posterPath={movie.poster_path} title={title} />
+             <MovieCard key={movie?.id} posterPath={movie.poster_path} title={title} />
              
             ))}
         </div>

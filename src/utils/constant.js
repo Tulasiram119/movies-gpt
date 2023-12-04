@@ -17,3 +17,11 @@ export const NOW_PLAYING_URL =
   "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1";
 export const IMAGE_CDN_URL = "https://image.tmdb.org/t/p/w500/";
 export const POPULAR_MOVIES = "https://api.themoviedb.org/3/movie/popular";
+export const TOP_RATED_MOVIES = "https://api.themoviedb.org/3/movie/top_rated";
+export const UPCOMING_MOVIES = "https://api.themoviedb.org/3/movie/upcoming";
+
+export const SUPPORTED_LANGUAGES = [{identifier:"en",name:"English"},
+                                    {identifier:"hindi",name:"Hindi"},
+                                    {identifier:"telugu",name:"Telugu"}];
+
+export const OPEN_API_KEY = "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";
