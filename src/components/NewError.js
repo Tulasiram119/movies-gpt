@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function error() {
+export default function error({message}) {
   return (
     <div>
-      There seem to be a problem in you code check carefully. 
+      {message} 
     </div>
   )
 }

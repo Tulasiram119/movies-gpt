@@ -9,7 +9,7 @@ export const API_OPTIONS = {
   headers: {
     accept: "application/json",
     Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNjhhY2E2ZGViODI2NTZkMGE4Yjc4NTExZjI0ZTUwYSIsInN1YiI6IjY1NWYyMWU4N2RmZGE2MDBmZTY1OGU3ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.vnPy9U9NQXtzuGc2O31JadlVuTx0rZ413NsTYnsSCuM",
+      "Bearer "+process.env.REACT_APP_TMBD_KEY,
   },
 };
 
@@ -24,4 +24,6 @@ export const SUPPORTED_LANGUAGES = [{identifier:"en",name:"English"},
                                     {identifier:"hindi",name:"Hindi"},
                                     {identifier:"telugu",name:"Telugu"}];
 
-export const OPEN_API_KEY = "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";
+                                    
+export const OPEN_API_KEY = process.env.REACT_APP_OPEN_API_KEY;
+export const SEARCH_MOVIES = 'https://api.themoviedb.org/3/search/movie?query=chatrapathi&include_adult=false&language=en-US&page=1';

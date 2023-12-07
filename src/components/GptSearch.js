@@ -5,7 +5,7 @@ import { netflixLogo } from "../utils/constant";
 const GptSearch = () => {
   return (
     <div>
-      <div className="absolute w-screen bg-gradient-to-b from-black flex justify-between -z-10">
+      <div className="fixed w-screen bg-gradient-to-b from-black flex justify-between -z-10">
         <img className=" w-screen p-0 m-0" src={netflixLogo} alt="netflixLogo" />
       </div>
       <GptSearchBar />
