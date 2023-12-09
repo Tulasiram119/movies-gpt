@@ -96,16 +96,16 @@ export default function Login() {
     <div>
       <Header />
       <div className="absolute">
-        <img
+        <img className="h-screen object-cover md:h-auto"
           src={netflixLogo}
           alt="netfixLogo"
         />
       </div>
       <form
-        className=" w-3/12 absolute bg-black my-36 mx-auto left-0 right-0 text-white p-8 rounded-lg bg-opacity-80"
+        className="w-full md:w-3/12 absolute bg-black my-36 mx-auto left-0 right-0 text-white p-8 rounded-lg bg-opacity-80"
         onSubmit={(e) => e.preventDefault()}
       >
-        <h1 className="font-bold text-2xl py-4">
+        <h1 className="font-bold md:text-2xl text-xl py-4">
           {isSignInForm ? "Sign in" : "Sigh up"}
         </h1>
         {!isSignInForm && (

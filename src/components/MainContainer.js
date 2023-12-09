@@ -12,7 +12,7 @@ export default function MainContainer() {
     const id = mainMovie?.id;
     
   return (
-    <div>
+    <div className='md:pt-0 pt-[30%] bg-black'>
       
       <VedioTitle title= {original_title} overview = {overview} />
       <VedioBackground movieId={id}/>

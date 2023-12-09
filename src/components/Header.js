@@ -48,28 +48,29 @@ export default function Header() {
     return ()=> unsubscribe();
   },[])
   return (
-    <div className="absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex justify-between">
+    <div className="absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex md:justify-between flex-col md:flex-row">
       <img
-        className="w-44"
+        className="w-44 mx-auto md:mx-0"
         src={logo}
         alt="netflixLogo"
       />
       {user && 
       
-      <div className="flex p-2"> 
-      {gptSearch?.showGptSearch && <select className="p-1 m-2 rounded-lg bg-gray-800 text-white" onChange={handleLanaguage}>
+      <div className="flex p- justify-between"> 
+      {gptSearch?.showGptSearch && <select className="py-2 px-4 my-8 md:my-4 bg-gray-900 text-white rounded-md " onChange={handleLanaguage}>
         {SUPPORTED_LANGUAGES.map((language)=><option key={language.identifier} value={language.identifier}>{language.name}</option>)}
         
         
       </select>}
-      <button className="text-white py-2 px-4 mx-4 my-2 bg-purple-700 rounded-lg" onClick={handleGptClick}>{gptSearch?.showGptSearch ? "Home Page": "Gpt Search"}</button>       
+      <button className="py-0 px-4 mx-4 md:my-4 my-8 bg-purple-800 text-white rounded-lg" onClick={handleGptClick}>{gptSearch?.showGptSearch ? "Home": "Gpt"}</button>       
         <img
-          className="h-12 w-12 mx-3"
+          className="md:h-10 md:w-12 md:mt-5 h-10 w-12 mt-5 md:mx-3 hidden md:inline-block"
           src={user?.photoURL}
           alt="userIcon"
         />
         <button
-          className="font-bold bg-red-500 my-2 cursor-pointer p-1 rounded-md"
+          className="font-bold bg-red-500 md:my-5 my-8 cursor-pointer md:px-1 md:py-0 px-4 
+          rounded-md"
           onClick={handleSignout}
         >
           Sign out
