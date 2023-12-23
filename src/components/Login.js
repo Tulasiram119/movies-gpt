@@ -47,9 +47,15 @@ export default function Login() {
             .then(() => {
               // Profile updated!
               // ...
-              const{uid,displayName,photoURL,email} = auth.currentUser;
-              dispatch(addUser({uid:uid,displayName:displayName,photoURL:photoURL,email:email}));
-              
+              const { uid, displayName, photoURL, email } = auth.currentUser;
+              dispatch(
+                addUser({
+                  uid: uid,
+                  displayName: displayName,
+                  photoURL: photoURL,
+                  email: email,
+                })
+              );
             })
             .catch((error) => {
               // An error occurred
@@ -57,7 +63,7 @@ export default function Login() {
               const errorCode = error.code;
               const errorMessage = error.message;
               // ..
-              console.log(error+"error in updating");
+              console.log(error + "error in updating");
               navigate("/error");
               setErrorMessage(errorCode + " - " + errorMessage);
             });
@@ -69,7 +75,7 @@ export default function Login() {
           // ..
           navigate("/error");
           setErrorMessage(errorCode + " - " + errorMessage);
-          console.log(error+"error in creating");
+          console.log(error + "error in creating");
         });
     } else {
       //sign in code
@@ -82,8 +88,6 @@ export default function Login() {
           // Signed in
           const user = userCredential.user;
           // ...
-          
-          
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -96,7 +100,8 @@ export default function Login() {
     <div>
       <Header />
       <div className="absolute">
-        <img className="h-screen object-cover md:h-auto"
+        <img
+          className="h-screen object-cover md:h-auto"
           src={netflixLogo}
           alt="netfixLogo"
         />
@@ -128,6 +133,15 @@ export default function Login() {
           className="p-4 my-4 w-full bg-gray-700"
           placeholder="password"
         />
+        {isSignInForm && (
+          <>
+            <h1 className="font-bold text-2xl text-center text-red-500">
+              Test User
+            </h1>
+            <h2 className="text-center">test123@gmail.com</h2>
+            <h2 className="text-center">Test@#123</h2>
+          </>
+        )}
         <p className="text-red-600 text-xl font-bold">{errMessage}</p>
         <button
           className="my-4 p-4 bg-red-700 w-full rounded-lg"

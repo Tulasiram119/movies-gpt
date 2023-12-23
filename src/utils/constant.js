@@ -8,8 +8,7 @@ export const API_OPTIONS = {
   method: "GET",
   headers: {
     accept: "application/json",
-    Authorization:
-      "Bearer "+process.env.REACT_APP_TMBD_KEY,
+    Authorization: "Bearer " + process.env.REACT_APP_TMBD_KEY,
   },
 };
 
@@ -19,11 +18,23 @@ export const IMAGE_CDN_URL = "https://image.tmdb.org/t/p/w500/";
 export const POPULAR_MOVIES = "https://api.themoviedb.org/3/movie/popular";
 export const TOP_RATED_MOVIES = "https://api.themoviedb.org/3/movie/top_rated";
 export const UPCOMING_MOVIES = "https://api.themoviedb.org/3/movie/upcoming";
+export const MOVIE_PROVIDERS =
+  "https://api.themoviedb.org/3/watch/providers/movie";
 
-export const SUPPORTED_LANGUAGES = [{identifier:"en",name:"English"},
-                                    {identifier:"hindi",name:"Hindi"},
-                                    {identifier:"telugu",name:"Telugu"}];
+export const SERIES_URL = "https://api.themoviedb.org/3/discover/tv";
+export const TRENDING_SERIES = "https://api.themoviedb.org/3/trending/tv/day";
+export const AIRING_TODAY = "https://api.themoviedb.org/3/tv/airing_today";
+export const ON_THE_AIR = "https://api.themoviedb.org/3/tv/on_the_air";
+export const POPULAR_SERIES = "https://api.themoviedb.org/3/tv/popular";
+export const TOP_RATED_SERIES = "https://api.themoviedb.org/3/tv/top_rated";
+export const SERIES_PROVIDERS =
+  "https://api.themoviedb.org/3/watch/providers/tv";
+export const SUPPORTED_LANGUAGES = [
+  { identifier: "en", name: "English" },
+  { identifier: "hindi", name: "Hindi" },
+  { identifier: "telugu", name: "Telugu" },
+];
 
-                                    
 export const OPEN_API_KEY = process.env.REACT_APP_OPEN_API_KEY;
-export const SEARCH_MOVIES = 'https://api.themoviedb.org/3/search/movie?query=chatrapathi&include_adult=false&language=en-US&page=1';
+export const SEARCH_MOVIES =
+  "https://api.themoviedb.org/3/search/movie?query=chatrapathi&include_adult=false&language=en-US&page=1";

@@ -54,6 +54,7 @@ export default function Header() {
         src={logo}
         alt="netflixLogo"
       />
+      
       {user && 
       
       <div className="flex p- justify-between"> 
@@ -68,6 +69,7 @@ export default function Header() {
           src={user?.photoURL}
           alt="userIcon"
         />
+        
         <button
           className="font-bold bg-red-500 md:my-5 my-8 cursor-pointer md:px-1 md:py-0 px-4 
           rounded-md"
