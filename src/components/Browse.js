@@ -1,17 +1,13 @@
 import React from "react";
 import Header from "./Header";
 import useNowPalyingMovies from "../hooks/useNowPlayingMovies";
-import MainContainer from "./MainContainer";
-import SecondaryContainer from "./SecondaryContainer";
 import usePopularMovies from "../hooks/usePopularMovies";
 import useTopRatedMovies from "../hooks/useTopRatedMovies";
 import useUpcomingMovies from "../hooks/useUpcomingMovies";
-import GptSearch from "./GptSearch";
-import { useSelector } from "react-redux";
+
+import { Outlet } from "react-router-dom";
 
 export default function Browse() {
-  const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
-  
   useNowPalyingMovies(1);
   usePopularMovies();
   useTopRatedMovies();
@@ -19,14 +15,7 @@ export default function Browse() {
   return (
     <div>
       <Header />
-      {showGptSearch ? (
-        <GptSearch />
-      ) : (
-        <>
-          <MainContainer />
-          <SecondaryContainer />
-        </>
-      )}
+      <Outlet />
     </div>
   );
 }
